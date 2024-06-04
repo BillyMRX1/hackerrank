@@ -9,6 +9,7 @@ import java.util.concurrent.*;
 import java.util.function.*;
 import java.util.regex.*;
 import java.util.stream.*;
+
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
@@ -25,9 +26,38 @@ class Result {
 
     public static int getTotalX(List<Integer> a, List<Integer> b) {
         // Write your code here
-         return 0;
+        int lcmA = a.get(0);
+        for (Integer num : a) {
+            lcmA = lcm(lcmA, num);
+        }
+
+        int gcdB = b.get(0);
+        for (Integer num : b) {
+            gcdB = gcd(gcdB, num);
+        }
+
+        int count = 0;
+        for (int i = lcmA, j = 2; i <= gcdB; i = lcmA * j, j++) {
+            if (gcdB % i == 0) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
+    private static int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
+    private static int lcm(int a, int b) {
+        return (a * b) / gcd(a, b);
+    }
 }
 
 public class Solution {
