@@ -9,6 +9,8 @@ import java.util.concurrent.*;
 import java.util.regex.*;
 
 /**
+ * n = number of clouds
+ * k = jump distance
  * Time Complexity: 𝑂(n/k)
  * Space Complexity: 𝑂(1)
  */
